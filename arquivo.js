@@ -6,7 +6,7 @@ const botaoLimpar = document.querySelector('#limpar');
 const botaoExcluir = document.getElementsByClassName('btn btn-danger btn-sm');
 const botaoEditar = document.getElementsByClassName('btn btn-secondary btn-sm');
 
-function btnLimpar(event){
+function btnLimpar(event) {
   inputNome.value = "";
   inputEmail.value = "";
   inputCelular.value = "";
@@ -48,20 +48,24 @@ function btnSalvar(event) {
   for( index = 0; index < botaoEditar.length; index += 1) {
     botaoEditar[index].addEventListener("click", btaoEditar)
   }
+  if (editar == 1){
+    elementohtml.remove()
+    editar = 0
+  }
 }
-function btaoExcluir (event){ 
+function btaoExcluir (event) { 
   const elementohtml = event.target.parentNode.parentNode;
   elementohtml.remove()
 }
 function btaoEditar (event) {
-  const elementohtml = event.target.parentNode.parentNode;
+  elementohtml = event.target.parentNode.parentNode;
   const nome = elementohtml.firstElementChild;
   const email= nome.nextElementSibling;
   const celular = email.nextElementSibling;
   inputNome.value = nome.innerText;
   inputEmail.value = email.innerText;
   inputCelular.value = celular.innerText;
-  elementohtml.remove()
+  editar = 1
 }
 botaoSalvar.addEventListener("click", btnSalvar);
 botaoLimpar.addEventListener("click", btnLimpar);
